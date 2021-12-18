@@ -28,6 +28,11 @@ class LauncherTest {
     }
 
     @Test
+    public void none_port_arg_should_throw() {
+        Assertions.assertThrows( Exception.class, () -> Launcher.main(new String[] {" "}));
+    }
+
+    @Test
     void bound_port_already_existing_should_throw_IOException() throws IOException {
         new NavyWebServer(testPort);
         Assertions.assertThrows( IOException.class, () -> Launcher.main(new String[] { Integer.toString(testPort) }));

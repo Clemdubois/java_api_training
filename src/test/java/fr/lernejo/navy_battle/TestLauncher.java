@@ -37,12 +37,12 @@ class LauncherTest {
         new NavyWebServer(testPort);
         Assertions.assertThrows( IOException.class, () -> Launcher.main(new String[] { Integer.toString(testPort) }));
     }
-/*
+
     @Test
     public void correct_port_shouldnt_throw_main() {
         Assertions.assertDoesNotThrow( () -> Launcher.main(new String[] { Integer.toString(testPort) }));
     }
-
+/*
     @Test
     public void correct_port_and_address_given_shouldnt_throw() {
         Assertions.assertDoesNotThrow( () -> Launcher.main(new String[] { Integer.toString(testPort++) }));

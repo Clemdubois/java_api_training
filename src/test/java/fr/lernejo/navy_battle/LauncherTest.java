@@ -42,11 +42,11 @@ class LauncherTest {
     public void correct_port_shouldnt_throw_main() {
         Assertions.assertDoesNotThrow( () -> Launcher.main(new String[] { Integer.toString(testPort) }));
     }
-/*
-    @Test
-    public void correct_port_and_address_given_shouldnt_throw() {
+
+    /*@Test
+    public void main_should_not_throw_when_giving_correct_port_and_address() {
         Assertions.assertDoesNotThrow( () -> Launcher.main(new String[] { Integer.toString(testPort++) }));
-        Assertions.assertDoesNotThrow( () -> Launcher.main(new String[] { Integer.toString(testPort), "http://localhost:"+(testPort-1) }));
+        //Assertions.assertDoesNotThrow( () -> Launcher.main(new String[] { Integer.toString(testPort), "http://localhost:"+(testPort-1) }));
     }*/
 
     @Test

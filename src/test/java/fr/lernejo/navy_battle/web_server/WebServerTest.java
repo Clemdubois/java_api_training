@@ -1,6 +1,8 @@
 package fr.lernejo.navy_battle.web_server;
 
 import fr.lernejo.navy_battle.client.NavyClient;
+import fr.lernejo.navy_battle.web_server.api.FireHandler;
+import fr.lernejo.navy_battle.web_server.api.GameStartHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +14,11 @@ import java.net.http.HttpResponse;
 class WebServerTest {
 
     PingHandler testPingHandler = new PingHandler();
+    GameStartHandler testGameHandler = new GameStartHandler();
+    FireHandler testFireHandler = new FireHandler();
     NavyWebServer testNavyWebServer;
     NavyClient testHttpClient;
-    int testPort = 8000;
+    int testPort = 11000;
 
     @BeforeEach
     void setup_web_server() throws IOException {
@@ -45,6 +49,22 @@ class WebServerTest {
     @Test
     void ping_return_status_code_200_and_body_OK() {
         testNavyWebServer.createContext( testPingHandler.getAssignedPath(), testPingHandler );
+        HttpResponse<String> response = testHttpClient.ping();
+        Assertions.assertEquals( 200, response.statusCode() );
+        Assertions.assertEquals( "OK", response.body() );
+    }
+
+    @Test
+    void game_return_status_code_200_and_body_OK() {
+        testNavyWebServer.createContext( testGameHandler.getAssignedPath(), testGameHandler );
+        HttpResponse<String> response = testHttpClient.ping();
+        Assertions.assertEquals( 200, response.statusCode() );
+        Assertions.assertEquals( "OK", response.body() );
+    }
+
+    @Test
+    void fire_return_status_code_200_and_body_OK() {
+        testNavyWebServer.createContext( testFireHandler.getAssignedPath(), testFireHandler );
         HttpResponse<String> response = testHttpClient.ping();
         Assertions.assertEquals( 200, response.statusCode() );
         Assertions.assertEquals( "OK", response.body() );

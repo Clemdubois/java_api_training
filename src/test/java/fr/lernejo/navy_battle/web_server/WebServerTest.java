@@ -14,8 +14,6 @@ import java.net.http.HttpResponse;
 class WebServerTest {
 
     PingHandler testPingHandler = new PingHandler();
-    GameStartHandler testGameHandler = new GameStartHandler();
-    FireHandler testFireHandler = new FireHandler();
     NavyWebServer testNavyWebServer;
     NavyClient testHttpClient;
     int testPort = 11000;
@@ -49,22 +47,6 @@ class WebServerTest {
     @Test
     void ping_return_status_code_200_and_body_OK() {
         testNavyWebServer.createContext( testPingHandler.getAssignedPath(), testPingHandler );
-        HttpResponse<String> response = testHttpClient.ping();
-        Assertions.assertEquals( 200, response.statusCode() );
-        Assertions.assertEquals( "OK", response.body() );
-    }
-
-    @Test
-    void game_return_status_code_200_and_body_OK() {
-        testNavyWebServer.createContext( testGameHandler.getAssignedPath(), testGameHandler );
-        HttpResponse<String> response = testHttpClient.ping();
-        Assertions.assertEquals( 200, response.statusCode() );
-        Assertions.assertEquals( "OK", response.body() );
-    }
-
-    @Test
-    void fire_return_status_code_200_and_body_OK() {
-        testNavyWebServer.createContext( testFireHandler.getAssignedPath(), testFireHandler );
         HttpResponse<String> response = testHttpClient.ping();
         Assertions.assertEquals( 200, response.statusCode() );
         Assertions.assertEquals( "OK", response.body() );
